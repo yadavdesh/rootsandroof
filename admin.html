@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roots and Roof — Admin</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="admin-body">
+
+<!-- LOGIN VIEW -->
+<div id="login-view" class="admin-login-wrap">
+  <div class="admin-login-card">
+    <div class="admin-login-brand">
+      <svg width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 26 V38 M32 30 C26 34 22 34 17 40 M32 33 C38 37 42 37 47 43 M32 36 C28 41 25 44 20 50 M32 36 C36 41 39 44 44 50" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+      <h1>Roots and Roof</h1>
+      <p>Admin Dashboard</p>
+    </div>
+    <form class="admin-login-form" id="login-form">
+      <label style="display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.04em;color:#5c675c;margin-bottom:8px;">Password</label>
+      <div class="input-icon-wrap">
+        <svg class="left" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <input type="password" id="password-input" placeholder="Enter password" autocomplete="current-password" required />
+        <svg class="right" id="toggle-password" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <p class="admin-error" id="login-error" style="display:none;"></p>
+      <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;margin-top:12px;">Log In</button>
+      <a href="index.html" class="admin-back">Back to website</a>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<div id="dashboard-view" style="display:none;">
+  <div class="admin-topbar">
+    <div class="brand-mark">
+      <svg width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Roots and Roof — Admin</span>
+    </div>
+    <div class="admin-topbar-actions">
+      <span class="saved-flash" id="saved-flash" style="display:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+        Changes saved
+      </span>
+      <button class="btn-ghost" id="reset-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 9 8 9"/></svg>
+        <span class="label">Reset</span>
+      </button>
+      <a href="index.html" class="btn-ghost" style="text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="label">View Site</span>
+      </a>
+      <button class="btn-save" id="save-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Save Changes
+      </button>
+      <button class="icon-btn" id="logout-btn" title="Log out">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <div class="admin-sidebar" id="admin-sidebar"></div>
+    <div style="flex:1;min-width:0;">
+      <div class="admin-tabs-mobile" id="admin-tabs-mobile"></div>
+      <div class="admin-panel" id="admin-panel"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/content.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
