@@ -1,5 +1,7 @@
 # Roots and Roof — Static Site
 
+**Design note:** the palette moved from the generic "deep green + gold" template look to a warmer, more distinctive **terracotta & espresso** palette — inspired by Berlin brick architecture and Indian terracotta/spice tones, which ties more directly into the "Roots and Roof" story than a stock green. Colors live as CSS variables at the top of `css/styles.css` if you want to adjust further.
+
 Plain HTML/CSS/JS — no build step, no dependencies. Ready to drag-and-drop onto Netlify.
 
 ## Folder structure
@@ -46,6 +48,20 @@ Once deployed, go to Site settings → Domain management → Add a custom domain
 - Password: `rootsandroof2026` (change this in `js/content.js` — search for `ADMIN_PASSWORD`)
 - Edits are saved to the browser's `localStorage`, so they persist on the device/browser used to make them, but do **not** sync across visitors or devices — this is a client-side only setup with no backend/database.
 - The "Reset" button restores all content to the original defaults.
+
+### What you can edit
+- **Header & Footer** — business name, tagline, every nav link, and the footer disclaimer text.
+- **Hero / About** — all copy, plus photos. Each photo field lets you either paste an image URL *or* click "Upload from device" to use your own photo directly (stored as the site's data, no external image host needed).
+- **Social** — add/remove/edit links for Instagram, Facebook, LinkedIn, WhatsApp, X, and YouTube. Only platforms with a URL filled in are shown on the live site (in the footer and contact section).
+- **Contact → Contact Form Submission** — choose where the contact form goes: Netlify Forms (recommended if hosting on Netlify — see setup note below) or a `mailto:` link that opens the visitor's own email app.
+
+### Contact form email setup (Netlify Forms)
+The form is pre-wired for Netlify Forms. Once deployed on Netlify:
+1. Go to your site's Netlify dashboard → **Forms**
+2. Submissions will appear here automatically after your first real submission post-deploy
+3. Go to **Forms → Notifications → Add notification → Email notification**, and enter the address you want submissions sent to (same as "Notification Email" in the admin Contact tab, for consistency)
+
+If you'd rather not use Netlify Forms (e.g. hosting elsewhere), switch the admin dropdown to "mailto" — no setup needed, but it opens the visitor's email client instead of submitting silently.
 
 ## Important limitations to know about
 - **Admin auth is client-side only.** The password lives in plain JavaScript, so anyone who views the page source can find it. Fine for a personal/low-stakes site; not real security. For a production-grade login, you'd want a backend (e.g. Netlify Identity, or a small serverless function).

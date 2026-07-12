@@ -2,10 +2,12 @@
    Roots and Roof — public site behaviour
    ========================================================== */
 
+let SITE_CONTENT = null;
+
 document.addEventListener("DOMContentLoaded", () => {
-  const content = loadContent();
-  render(content);
-  wireNav(content);
+  SITE_CONTENT = loadContent();
+  render(SITE_CONTENT);
+  wireNav(SITE_CONTENT);
   wireScroll();
   wireReveal();
   wireFAQ();
@@ -87,7 +89,7 @@ function render(content) {
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 8C7 8 5 10 5 12.5S7 17 9.5 17c.3 0 .6 0 .9-.1-.4 1.6-1.8 2.9-3.6 3.3l.5 1.7c3.2-.7 5.7-3.5 5.7-7.2V12.5C13 10 11 8 9.5 8Zm9 0c-2.5 0-4.5 2-4.5 4.5S16 17 18.5 17c.3 0 .6 0 .9-.1-.4 1.6-1.8 2.9-3.6 3.3l.5 1.7c3.2-.7 5.7-3.5 5.7-7.2V12.5C22 10 20 8 18.5 8Z"/></svg>
         </div>
         <p class="quote-text">"${t.quote}"</p>
-        <div class="testi-stars">${Array.from({ length: t.rating }).map(() => `<svg width="14" height="14" viewBox="0 0 24 24" fill="#c9a84c"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>`).join("")}</div>
+        <div class="testi-stars">${Array.from({ length: t.rating }).map(() => `<svg width="14" height="14" viewBox="0 0 24 24" fill="#b6902f"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>`).join("")}</div>
         <p class="name">${t.name}</p>
         <p class="loc">${t.location}</p>
       </div>`
@@ -112,16 +114,30 @@ function render(content) {
   el("contact-heading").textContent = content.contact.heading;
   el("contact-body").textContent = content.contact.body;
   el("contact-info").innerHTML = `
-    <a class="contact-info-row" href="mailto:${content.contact.email}">${icon("FileText", 18).replace(/.*/, mailIcon())}<span>${content.contact.email}</span></a>
+    <a class="contact-info-row" href="mailto:${content.contact.email}">${mailIcon()}<span>${content.contact.email}</span></a>
     <a class="contact-info-row" href="tel:${content.contact.phone.replace(/\s/g, "")}">${phoneIcon()}<span>${content.contact.phone}</span></a>
-    <div class="contact-info-row">${instaIcon()}<span>${content.contact.instagram}</span></div>
     <div class="contact-info-row">${pinIcon()}<span>${content.contact.city}</span></div>
   `;
+  el("contact-social").innerHTML = socialIconLinks(content.socialLinks);
+  el("contact-social").classList.add("on-cream");
 
   // Footer
-  el("footer-contact").innerHTML = `<span>${content.contact.email}</span><span>·</span><span>${content.contact.instagram}</span>`;
+  el("footer-contact").innerHTML = `<span>${content.contact.email}</span>`;
+  el("footer-social").innerHTML = socialIconLinks(content.socialLinks);
   el("footer-note").textContent = content.footer.note;
   el("footer-copyright").textContent = `© ${new Date().getFullYear()} ${content.brand.name}`;
+}
+
+function socialIconLinks(links) {
+  return (links || [])
+    .filter((s) => s.url && s.url.trim())
+    .map((s) => {
+      const svgPath = SOCIAL_ICONS[s.platform] || SOCIAL_ICONS.Instagram;
+      return `<a href="${s.url}" target="_blank" rel="noopener noreferrer" title="${s.platform}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg>
+      </a>`;
+    })
+    .join("");
 }
 
 function mailIcon() {
@@ -187,16 +203,49 @@ function wireFAQ() {
   });
 }
 
-/* ---- Contact form (client-side only demo) ---- */
+/* ---- Contact form ----
+   Two submission modes, controlled from the admin dashboard (Contact tab):
+   - "netlify": posts to Netlify Forms. Works automatically once deployed on
+     Netlify — set up a notification email in Site settings → Forms → Notifications.
+   - "mailto": opens the visitor's own email app addressed to your notification email.
+     Works anywhere, no hosting-specific setup required. */
 function wireContactForm() {
   const form = el("contact-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    el("contact-form-wrap").innerHTML = `
-      <div class="form-success">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
-        <p class="title">Message received</p>
-        <p>Desh will get back to you within one business day.</p>
-      </div>`;
+    const name = el("cf-name").value;
+    const email = el("cf-email").value;
+    const message = el("cf-message").value;
+    const mode = (SITE_CONTENT && SITE_CONTENT.contact.formMode) || "netlify";
+    const dest = (SITE_CONTENT && SITE_CONTENT.contact.notificationEmail) || (SITE_CONTENT && SITE_CONTENT.contact.email) || "";
+
+    if (mode === "mailto") {
+      const subject = encodeURIComponent(`New enquiry from ${name} — Roots and Roof`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      window.location.href = `mailto:${dest}?subject=${subject}&body=${body}`;
+      setTimeout(() => showFormSuccess(true), 300);
+    } else {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      })
+        .then(() => showFormSuccess(false))
+        .catch(() => showFormSuccess(false));
+    }
   });
+}
+
+function showFormSuccess(viaMailClient) {
+  el("contact-form-wrap").innerHTML = `
+    <div class="form-success">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+      <p class="title">${viaMailClient ? "Almost there" : "Message received"}</p>
+      <p>${
+        viaMailClient
+          ? "Your email app should have opened with your message ready to send."
+          : "Desh will get back to you within one business day."
+      }</p>
+    </div>`;
 }

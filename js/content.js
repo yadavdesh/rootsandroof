@@ -82,7 +82,15 @@ const DEFAULT_CONTENT = {
     phone: "+49 30 1234 5678",
     instagram: "@rootsandroof",
     city: "Berlin, Germany",
+    formMode: "netlify", // "netlify" (captured by Netlify Forms, needs a notification email set up in the Netlify dashboard) or "mailto" (opens the visitor's own email app, addressed to notificationEmail)
+    notificationEmail: "hello@rootsandroof.de",
   },
+  socialLinks: [
+    { platform: "Instagram", url: "https://instagram.com/rootsandroof" },
+    { platform: "LinkedIn", url: "" },
+    { platform: "Facebook", url: "" },
+    { platform: "WhatsApp", url: "" },
+  ],
   footer: {
     note: "Roots and Roof is an independent real estate advisory and is not a licensed bank or law firm. We coordinate with licensed partners for financing and legal matters.",
   },
@@ -130,4 +138,14 @@ const ICONS = {
   TrendingUp: '<path d="m3 17 6-6 4 4 8-8"/><path d="M17 7h4v4"/>',
   ShieldCheck: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>',
   Users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9.5" r="2.8"/><path d="M15.8 13.8A5.6 5.6 0 0 1 21.5 20"/>',
+};
+
+/* Social platform icons — keys must match the <select> options used in admin.js */
+const SOCIAL_ICONS = {
+  Instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>',
+  Facebook: '<path d="M14 9h3V5h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4v-2a1 1 0 0 1 1-1Z"/>',
+  LinkedIn: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7.5 10v7M7.5 7v.01M11.5 17v-4a2 2 0 0 1 4 0v4M11.5 10v7"/>',
+  WhatsApp: '<path d="M4 20l1.3-3.9A8 8 0 1 1 8.9 19L4 20Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.5 0 1-.7 1-1.3 0-.3-.2-.5-.4-.6l-1.6-.8c-.3-.1-.5-.1-.7.1l-.5.6c-1-.5-1.9-1.4-2.4-2.4l.6-.5c.2-.2.2-.5.1-.7l-.8-1.6c-.1-.3-.4-.4-.6-.4-.6 0-1.2.5-1.2 1Z"/>',
+  X: '<path d="M4 4l7.5 8.5M20 4l-7.5 8.5M4 20l7.5-8.5M20 20l-7.5-8.5"/>',
+  YouTube: '<rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.5v5l4.5-2.5-4.5-2.5Z" fill="currentColor" stroke="none"/>',
 };

@@ -3,16 +3,19 @@
    ========================================================== */
 
 :root {
-  --green: #1a4a2e;
-  --green-dark: #0f2f1c;
-  --green-tint: #e7ede8;
-  --cream: #f5f0e8;
-  --cream-deep: #ece3d3;
-  --gold: #c9a84c;
-  --gold-dark: #a8863a;
+  /* Terracotta & espresso — inspired by Berlin brick and Indian terracotta/spice tones,
+     rather than the generic "trustworthy green" template. Variable names kept stable
+     for compatibility; only the hex values changed. */
+  --green: #b1502f;        /* terracotta — primary accent-mid, section fills */
+  --green-dark: #241c16;   /* espresso — darkest sections (footer, process, stats) */
+  --green-tint: #f1e3d6;   /* warm tint */
+  --cream: #f6f1e7;
+  --cream-deep: #ece1cd;
+  --gold: #b6902f;         /* brass — buttons, numerals, icon accents */
+  --gold-dark: #93701f;
   --white: #ffffff;
-  --ink: #20261f;
-  --muted: #5c675c;
+  --ink: #251c15;
+  --muted: #6b5f52;
   --error: #b0453e;
   --font-display: "Fraunces", serif;
   --font-body: "Inter", sans-serif;
@@ -111,8 +114,12 @@ p { margin: 0; }
   align-items: flex-end;
   overflow: hidden;
 }
-.hero-bg { position: absolute; inset: 0; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, var(--gold-dark) 130%);
+}
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg img.img-broken { display: none; }
 .hero-bg::after {
   content: "";
   position: absolute; inset: 0;
@@ -138,8 +145,13 @@ p { margin: 0; }
 /* -------- About -------- */
 .about { background: var(--cream); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.about-photo { position: relative; }
-.about-photo img { width: 100%; height: 480px; object-fit: cover; border-radius: 3px; }
+.about-photo {
+  position: relative;
+  background: linear-gradient(135deg, var(--green) 0%, var(--gold-dark) 100%);
+  border-radius: 3px;
+}
+.about-photo img { width: 100%; height: 480px; object-fit: cover; border-radius: 3px; display: block; }
+.about-photo img.img-broken { display: none; }
 .about-badge {
   position: absolute; bottom: -24px; right: -24px;
   background: var(--green); padding: 24px; border-radius: 3px; max-width: 220px;
@@ -238,6 +250,18 @@ p { margin: 0; }
 .form-success p { color: var(--muted); font-size: 0.9rem; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 
+/* -------- Social icons -------- */
+.social-row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+.social-row a {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(245,240,232,0.3); color: var(--white);
+  transition: background 0.2s, border-color 0.2s;
+}
+.social-row a:hover { background: var(--gold); border-color: var(--gold); color: var(--green-dark); }
+.social-row.on-cream a { border-color: var(--cream-deep); color: var(--green-dark); }
+.social-row.on-cream a:hover { background: var(--green-dark); border-color: var(--green-dark); color: var(--white); }
+
 /* -------- Footer -------- */
 .site-footer { background: var(--green-dark); padding: 48px 0; }
 .footer-top {
@@ -314,6 +338,24 @@ p { margin: 0; }
 .admin-tabs-mobile { display: none; gap: 8px; overflow-x: auto; margin-bottom: 16px; }
 .admin-tabs-mobile button { flex-shrink: 0; padding: 8px 16px; border-radius: 3px; background: var(--white); font-size: 0.85rem; }
 .admin-tabs-mobile button.active { background: var(--green); color: var(--white); }
+
+.admin-field select {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--cream-deep); border-radius: 3px; outline: none; background: var(--white);
+}
+.admin-note {
+  font-size: 0.78rem; color: var(--muted); background: var(--cream); border-radius: 3px;
+  padding: 10px 12px; margin-top: -4px; margin-bottom: 16px; line-height: 1.5;
+}
+.admin-image-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.admin-image-preview {
+  width: 64px; height: 64px; border-radius: 3px; object-fit: cover;
+  border: 1px solid var(--cream-deep); background: var(--cream); flex-shrink: 0;
+}
+.admin-upload-btn {
+  font-size: 0.78rem; padding: 8px 14px; border: 1px solid var(--cream-deep); border-radius: 3px; color: var(--ink); white-space: nowrap;
+}
+.admin-upload-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+.admin-file-input { display: none; }
 
 @media (max-width: 860px) {
   .admin-sidebar { display: none; }
