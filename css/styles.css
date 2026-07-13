@@ -133,7 +133,7 @@ p { margin: 0; }
 
 /* -------- Divider -------- */
 .divider { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 32px 0; }
-.divider .line { height: 1px; width: 64px; background: var(--gold); opacity: 0.6; }
+.divider .line { height: 1px; width: 64px; background: var(--muted); opacity: 0.45; }
 
 /* -------- About -------- */
 .about { background: var(--cream); }
@@ -144,7 +144,7 @@ p { margin: 0; }
   background: linear-gradient(135deg, var(--green) 0%, var(--gold-dark) 100%);
   border-radius: 3px;
 }
-.about-photo img { width: 100%; height: 480px; object-fit: cover; border-radius: 3px; display: block; }
+.about-photo img { width: 100%; height: 480px; object-fit: cover; object-position: center 15%; border-radius: 3px; display: block; }
 .about-photo img.img-broken { display: none; }
 .about-badge {
   position: absolute; bottom: -24px; right: -24px;

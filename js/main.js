@@ -108,9 +108,13 @@ function render(content) {
   el("contact-body").textContent = content.contact.body;
   el("contact-info").innerHTML = `
     <a class="contact-info-row" href="mailto:${content.contact.email}">${mailIcon()}<span>${content.contact.email}</span></a>
-    <a class="contact-info-row" href="tel:${content.contact.phone.replace(/\s/g, "")}">${phoneIcon()}<span>${content.contact.phone}</span></a>
     <div class="contact-info-row">${pinIcon()}<span>${content.contact.city}</span></div>
   `;
+  el("whatsapp-cta").innerHTML = `
+    <a href="${content.contact.whatsapp}" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+      ${whatsappIcon()}
+      Chat with us on WhatsApp
+    </a>`;
   el("contact-social").innerHTML = socialIconLinks(content.socialLinks);
 
   // Footer
@@ -135,8 +139,8 @@ function socialIconLinks(links) {
 function mailIcon() {
   return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`;
 }
-function phoneIcon() {
-  return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>`;
+function whatsappIcon() {
+  return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.9 19L4 20Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.5 0 1-.7 1-1.3 0-.3-.2-.5-.4-.6l-1.6-.8c-.3-.1-.5-.1-.7.1l-.5.6c-1-.5-1.9-1.4-2.4-2.4l.6-.5c.2-.2.2-.5.1-.7l-.8-1.6c-.1-.3-.4-.4-.6-.4-.6 0-1.2.5-1.2 1Z"/></svg>`;
 }
 function instaIcon() {
   return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>`;
@@ -218,7 +222,7 @@ function wireContactForm() {
       setTimeout(() => showFormSuccess(true), 300);
     } else {
       const body = new URLSearchParams(new FormData(form)).toString();
-      fetch("/", {
+      fetch(window.location.pathname, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body,

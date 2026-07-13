@@ -3,7 +3,7 @@
    Used by both index.html (public site) and admin.html
    ========================================================== */
 
-const STORAGE_KEY = "rootsandroof_content_v4";
+const STORAGE_KEY = "rootsandroof_content_v7";
 const ADMIN_AUTH_KEY = "rr_admin_auth";
 const ADMIN_PASSWORD = "rootsandroof2026";
 
@@ -72,12 +72,12 @@ const DEFAULT_CONTENT = {
   contact: {
     heading: "Let's find your Berlin address",
     body: "Tell us a little about what you're looking for, and Desh will personally get back to you within one business day.",
-    email: "hello@rootsandroof.de",
-    phone: "+49 30 1234 5678",
+    email: "info@rootsandroof.de",
+    whatsapp: "https://wa.me/4917645936837",
     instagram: "@rootsandroof",
     city: "Berlin, Germany",
-    formMode: "netlify", // "netlify" (captured by Netlify Forms, needs a notification email set up in the Netlify dashboard) or "mailto" (opens the visitor's own email app, addressed to notificationEmail)
-    notificationEmail: "hello@rootsandroof.de",
+    formMode: "mailto", // "mailto" (opens the visitor's own email app, addressed to notificationEmail — works immediately, no setup) or "netlify" (captured by Netlify Forms, but requires you to manually add a notification email in the Netlify dashboard first, or messages just sit uncollected)
+    notificationEmail: "info@rootsandroof.de",
   },
   socialLinks: [
     { platform: "Instagram", url: "https://instagram.com/rootsandroof" },

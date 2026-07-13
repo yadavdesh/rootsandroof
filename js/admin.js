@@ -372,18 +372,18 @@ function renderContactTab() {
       ${field("Section Heading", draft.contact.heading, "contact.heading")}
       ${field("Section Body", draft.contact.body, "contact.body", true)}
       ${field("Email (shown on site)", draft.contact.email, "contact.email")}
-      ${field("Phone", draft.contact.phone, "contact.phone")}
+      ${field("WhatsApp Link (e.g. https://wa.me/4917645936837)", draft.contact.whatsapp, "contact.whatsapp")}
       ${field("City", draft.contact.city, "contact.city")}
     </div>
     <div class="admin-card">
       <p class="admin-card-title">Contact Form Submission</p>
       ${selectField("Where should submissions go?", draft.contact.formMode, "contact.formMode", [
-        { value: "netlify", label: "Netlify Forms (captured in your Netlify dashboard)" },
-        { value: "mailto", label: "Open visitor's email app (mailto link)" },
+        { value: "mailto", label: "Open visitor's email app (mailto link) — works immediately, no setup" },
+        { value: "netlify", label: "Netlify Forms — requires manual setup in Netlify dashboard (see note)" },
       ])}
       ${field("Notification Email", draft.contact.notificationEmail, "contact.notificationEmail")}
       ${note(
-        "Netlify Forms mode: submissions are captured automatically once this site is deployed on Netlify. To actually receive them by email, go to your Netlify site dashboard → Forms → Notifications → Add notification → Email notification, and enter the address above. Mailto mode needs no setup, but opens the visitor's own email app instead of submitting silently."
+        "Mailto mode (recommended): opens the visitor's own email app, addressed to you. Works the instant you deploy, no dashboard setup. Netlify Forms mode: submissions are captured silently, but Netlify does NOT email you automatically — you must go to your Netlify site dashboard → Forms → Notifications → Add notification → Email notification and enter your address, or messages will sit uncollected and you'll never see them."
       )}
     </div>`;
 }
