@@ -1,21 +1,34 @@
 /* ==========================================================
    Roots and Roof — News page behaviour
+   Shows the 5 most recent items; a "Load more" button reveals
+   the rest, 5 at a time, as more are added via the admin panel.
    ========================================================== */
+
+const NEWS_PAGE_SIZE = 5;
+let sortedNews = [];
+let newsShownCount = NEWS_PAGE_SIZE;
 
 document.addEventListener("DOMContentLoaded", () => {
   const content = loadContent();
   initSharedChrome(content, false);
-  render(content);
-});
 
-function render(content) {
   document.title = `Latest News — ${content.brand.name}`;
-
   el("page-eyebrow").textContent = content.newsPage.eyebrow;
   el("page-heading").textContent = content.newsPage.heading;
   el("page-intro").textContent = content.newsPage.intro;
 
-  const items = [...content.news].sort((a, b) => new Date(b.date) - new Date(a.date));
+  sortedNews = [...content.news].sort((a, b) => new Date(b.date) - new Date(a.date));
+  newsShownCount = Math.min(NEWS_PAGE_SIZE, sortedNews.length);
+
+  renderNewsList();
+  el("news-load-more").addEventListener("click", () => {
+    newsShownCount = Math.min(newsShownCount + NEWS_PAGE_SIZE, sortedNews.length);
+    renderNewsList();
+  });
+});
+
+function renderNewsList() {
+  const items = sortedNews.slice(0, newsShownCount);
 
   el("news-list").innerHTML = items
     .map(
@@ -35,6 +48,8 @@ function render(content) {
     )
     .join("");
 
-  // Newly injected cards need the reveal observer re-run
+  const moreBtn = el("news-load-more");
+  moreBtn.style.display = newsShownCount >= sortedNews.length ? "none" : "inline-flex";
+
   wireReveal();
 }

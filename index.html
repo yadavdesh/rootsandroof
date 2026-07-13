@@ -3,29 +3,61 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Roots and Roof — Finding Home in Berlin</title>
-<meta name="description" content="Roots and Roof helps Indian diaspora and international buyers navigate the Berlin property market — from search to keys in hand." />
+<title>Roots and Roof — Berlin Property Advisory for Indian Diaspora &amp; International Buyers</title>
+<meta name="description" content="Roots and Roof helps Indian diaspora, NRI investors, and international buyers navigate the Berlin and German property market — from search to keys in hand. Local expertise, personal guidance." />
+<meta name="keywords" content="Berlin real estate, buy property Berlin, NRI real estate Germany, Indian diaspora Berlin property, German property advisor, Berlin apartment buying guide" />
+<link rel="canonical" href="https://rootsandroof.de/" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph / social + AI-crawler previews -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Roots and Roof" />
+<meta property="og:title" content="Roots and Roof — Finding Home in Berlin" />
+<meta property="og:description" content="Berlin property advisory for Indian diaspora and international buyers, from search to keys in hand." />
+<meta property="og:url" content="https://rootsandroof.de/" />
+<meta property="og:locale" content="en_DE" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Roots and Roof — Finding Home in Berlin" />
+<meta name="twitter:description" content="Berlin property advisory for Indian diaspora and international buyers." />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=11" />
+<link rel="stylesheet" href="css/styles.css?v=16" />
+
+<!-- Structured data: helps Google show rich results, and helps AI answer
+     engines (ChatGPT, Claude, Perplexity, Gemini) understand who you are
+     and cite you accurately when someone asks about Berlin property advisors. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Roots and Roof",
+  "description": "Berlin property advisory helping Indian diaspora and international buyers navigate the German real estate market, from search to keys in hand.",
+  "url": "https://rootsandroof.de/",
+  "email": "info@rootsandroof.de",
+  "areaServed": {
+    "@type": "City",
+    "name": "Berlin"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Berlin",
+    "addressCountry": "DE"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Desh Bhardwaj"
+  },
+  "knowsLanguage": ["English", "Hindi", "German", "Russian"],
+  "sameAs": []
+}
+</script>
 </head>
 <body>
 
-<!-- NAV -->
-<header class="navbar" id="navbar">
-  <div class="container">
-    <button class="brand-mark" data-scroll="hero" aria-label="Roots and Roof home">
-      <svg width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 26 V38 M32 30 C26 34 22 34 17 40 M32 33 C38 37 42 37 47 43 M32 36 C28 41 25 44 20 50 M32 36 C36 41 39 44 44 50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
-      <span id="brand-name">Roots and Roof</span>
-    </button>
-    <nav class="nav-links" id="nav-links"></nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="nav-mobile" id="nav-mobile"></div>
-</header>
+<!-- NAV (markup injected by js/shared.js so every page stays identical) -->
+<div id="site-header-root"></div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -153,31 +185,11 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="brand-mark">
-        <svg width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span id="footer-brand-name">Roots and Roof</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-        <div class="footer-contact" id="footer-contact"></div>
-        <div class="social-row" id="footer-social"></div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-note" id="footer-note"></p>
-      <div class="footer-meta">
-        <p id="footer-copyright"></p>
-        <a href="admin.html">Admin</a>
-      </div>
-    </div>
-  </div>
-</footer>
+<!-- FOOTER (markup injected by js/shared.js so every page stays identical) -->
+<div id="site-footer-root"></div>
 
-<script src="js/content.js?v=11"></script>
-<script src="js/shared.js?v=11"></script>
-<script src="js/main.js?v=11"></script>
+<script src="js/content.js?v=16"></script>
+<script src="js/shared.js?v=16"></script>
+<script src="js/main.js?v=16"></script>
 </body>
 </html>

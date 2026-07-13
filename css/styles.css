@@ -6,8 +6,8 @@
   /* Navy & champagne-gold — a professional real-estate-advisory palette:
      trustworthy, upscale, and neutral enough to sit well behind a headshot,
      rather than the warm red/terracotta tried previously. */
-  --green: #24344a;        /* deep navy — mid sections (nav-scrolled, contact bg, badge) */
-  --green-dark: #141b26;   /* near-black navy — darkest sections (footer, process, stats) */
+  --green: #3a5068;        /* slate navy — mid sections (nav-scrolled, contact bg, badge) */
+  --green-dark: #2a3b4d;   /* lighter slate navy — footer, process, page banners. Kept clearly off pure-black for comfortable reading. */
   --green-tint: #e8ecf1;   /* cool tint */
   --cream: #f7f3ec;
   --cream-deep: #e9e2d3;
@@ -74,6 +74,7 @@ p { margin: 0; }
   background: transparent;
 }
 .navbar.scrolled { background: var(--green); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.navbar.solid { background: var(--green-dark); box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
 .navbar .container {
   height: 80px;
   display: flex;
@@ -88,6 +89,7 @@ p { margin: 0; }
   letter-spacing: 0.02em;
 }
 .nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a.nav-link,
 .nav-links button.nav-link {
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -95,11 +97,18 @@ p { margin: 0; }
   color: var(--cream);
   transition: opacity 0.2s;
 }
+.nav-links a.nav-link:hover,
 .nav-links button.nav-link:hover { opacity: 0.75; }
+.nav-insta { display: inline-flex; align-items: center; gap: 8px; margin-left: 6px; transition: transform 0.2s; }
+.nav-insta:hover { transform: scale(1.1); }
+.nav-insta span { display: none; }
+.nav-mobile .nav-insta span { display: inline; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cream); }
+.nav-mobile .nav-insta { padding: 4px 0; }
 .nav-toggle { display: none; }
 .nav-mobile { display: none; flex-direction: column; gap: 16px; padding: 0 24px 24px; background: var(--green); }
 .nav-mobile.open { display: flex; }
-.nav-mobile button { text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cream); padding: 4px 0; }
+.nav-mobile a,
+.nav-mobile button { text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--cream); padding: 4px 0; display: block; }
 
 @media (max-width: 860px) {
   .nav-links { display: none; }
@@ -293,11 +302,15 @@ p { margin: 0; }
 
 /* -------- Footer -------- */
 .site-footer { background: var(--green-dark); padding: 48px 0; }
-.footer-top {
+.footer-row {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
-  padding-bottom: 32px; border-bottom: 1px solid rgba(245,240,232,0.12);
+  padding: 20px 0; border-bottom: 1px solid rgba(245,240,232,0.12);
 }
-.footer-top .brand-mark span { font-size: 1.1rem; }
+.footer-row-links .brand-mark span { font-size: 1.1rem; }
+.footer-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.footer-link { font-size: 0.85rem; color: rgba(245,240,232,0.75); text-transform: uppercase; letter-spacing: 0.04em; }
+.footer-link:hover { color: var(--gold); }
+.footer-row-contact { border-bottom: none; padding-bottom: 0; }
 .footer-contact { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; color: rgba(245,240,232,0.7); }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; }
 .footer-note { font-size: 0.75rem; color: rgba(245,240,232,0.5); max-width: 560px; }

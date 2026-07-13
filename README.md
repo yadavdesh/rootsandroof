@@ -45,12 +45,22 @@ netlify deploy --prod
 ## Custom domain
 Once deployed, go to Site settings → Domain management → Add a custom domain, and point your domain's DNS to Netlify as instructed there.
 
+## One shared header & footer across every page
+The header (nav) and footer markup exists in exactly one place: `js/shared.js`. Every page — homepage, Blog, News, and every individual blog post — just has two empty placeholders (`<div id="site-header-root">` and `<div id="site-footer-root">`) that get filled in identically on load. This means editing the nav or footer never requires touching more than one file, and every page is guaranteed to look the same instead of quietly drifting apart over time.
+
 ## Blog & News pages
 - `blog.html` — five original posts written for Roots and Roof, each tied to a real market development. Preview cards up top, full posts below (click "Read the full post" to jump down).
 - `news.html` — five real, sourced news items about the Berlin/German property market, each linking back to its original source.
 - Both are fully editable in Admin → **News** and **Blog** tabs: add, remove, or rewrite any item, and the page updates instantly. Items are sorted newest-first automatically based on the date field, so you don't need to reorder anything manually — just update the date.
 - Both pages share the same header/nav/footer as the homepage (edited in Admin → Header & Footer), so your brand name, nav links, and social icons stay consistent everywhere.
 
+
+## SEO — Google + AI answer engines (ChatGPT, Claude, Gemini, Perplexity)
+- **Meta tags, Open Graph, and structured data (JSON-LD)** are on every page — titles, descriptions, and a `RealEstateAgent` schema on the homepage, `Article` schema on every blog post. This is what lets Google show rich results and lets AI tools understand and accurately cite who you are.
+- **`robots.txt`** explicitly allows the major AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) alongside regular search engines, blocking only `/admin.html`.
+- **`sitemap.xml`** lists every page. Submit it in Google Search Console once you're live (Search Console → Sitemaps → enter `sitemap.xml`).
+- **⚠️ Important — update the domain:** all canonical/OG URLs are currently placeholder `https://rootsandroof.de/`. Once you know your real live domain, do a find-and-replace for `rootsandroof.de` across `index.html`, `blog.html`, `news.html`, `sitemap.xml`, and `robots.txt` (and each file in `blog/`) — otherwise search engines will be pointed at the wrong address.
+- **Individual blog posts are static HTML** (`blog/{slug}.html`), not JavaScript-rendered — this matters because several AI crawlers don't execute JavaScript, so a JS-only page would look blank to them. The blog listing page still updates live from the admin panel, but for a *new* post to get its own crawlable static page with full SEO tags, ask me (Claude) to generate one — it's a five-minute job, just not something the admin panel can do on its own without a backend. Until then, new posts still get a working link automatically (via `blog-post.html?slug=...`), just without the same SEO strength.
 
 ## Admin dashboard
 - Visit `yoursite.com/admin.html`

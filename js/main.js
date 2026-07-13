@@ -8,7 +8,9 @@ let SITE_CONTENT = null;
 document.addEventListener("DOMContentLoaded", () => {
   SITE_CONTENT = loadContent();
   initSharedChrome(SITE_CONTENT, true);
+  document.title = `${SITE_CONTENT.brand.name} — Berlin Property Advisory for Indian Diaspora & International Buyers`;
   render(SITE_CONTENT);
+  wireReveal();
   wireFAQ();
   wireContactForm();
 });
@@ -100,7 +102,9 @@ function render(content) {
       ${whatsappIcon()}
       Chat with us on WhatsApp
     </a>`;
-  el("contact-social").innerHTML = socialIconLinks(content.socialLinks);
+  el("contact-social").innerHTML = socialIconLinks(
+    (content.socialLinks || []).filter((s) => !["Instagram", "Facebook", "YouTube"].includes(s.platform))
+  );
 }
 
 /* ---- FAQ accordion ---- */

@@ -1,11 +1,25 @@
 /* ==========================================================
-   Roots and Roof — Blog page behaviour
+   Roots and Roof — Blog listing page (tiles only)
+   Posts with a hand-built static page (best for SEO / AI crawlers
+   that don't run JavaScript) link straight there. Any post added later
+   via the admin panel that isn't in this list yet falls back to the
+   dynamic blog-post.html template, so the link always works — ask
+   Claude to generate a matching static page under /blog/ for full SEO.
    ========================================================== */
+
+const STATIC_POST_SLUGS = [
+  "berlin-prices-moving-again",
+  "apartments-safer-than-offices",
+  "renting-easier-buying-isnt",
+  "mortgage-rate-372-percent",
+  "not-booming-worth-a-look",
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   const content = loadContent();
   initSharedChrome(content, false);
   render(content);
+  wireReveal();
 });
 
 function render(content) {
@@ -18,35 +32,17 @@ function render(content) {
   const posts = [...content.blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
 
   el("blog-grid").innerHTML = posts
-    .map(
-      (p) => `
-      <div class="blog-card reveal">
+    .map((p) => {
+      const href = STATIC_POST_SLUGS.includes(p.slug)
+        ? `blog/${encodeURIComponent(p.slug)}.html`
+        : `blog-post.html?slug=${encodeURIComponent(p.slug)}`;
+      return `
+      <a class="blog-card reveal" href="${href}" style="text-decoration:none;">
         <span class="date-tag">${calendarIcon()} ${formatDate(p.date)}</span>
         <h2>${p.title}</h2>
         <p class="excerpt">${p.excerpt}</p>
-        <a class="read-link" href="#${p.slug}">Read the full post →</a>
-      </div>`
-    )
-    .join("");
-
-  el("blog-articles").innerHTML = posts
-    .map(
-      (p) => `
-      <article class="blog-article reveal" id="${p.slug}">
-        <span class="date-tag">${calendarIcon()} ${formatDate(p.date)}</span>
-        <h2>${p.title}</h2>
-        ${paragraphize(p.body)}
-        <a class="back-to-top" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
-      </article>`
-    )
-    .join("");
-
-  wireReveal();
-}
-
-function paragraphize(body) {
-  return (body || "")
-    .split(/\n\s*\n/)
-    .map((para) => `<p>${para.trim()}</p>`)
+        <span class="read-link">Read the full post →</span>
+      </a>`;
+    })
     .join("");
 }

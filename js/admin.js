@@ -251,7 +251,7 @@ function renderTab(tab) {
   else if (tab === "Stories") panel.innerHTML = renderArrayTab("testimonials", renderTestimonialCard, "Testimonial");
   else if (tab === "FAQ") panel.innerHTML = renderArrayTab("faq", renderFaqCard, "Question");
   else if (tab === "Contact") panel.innerHTML = renderContactTab();
-  else if (tab === "Social") panel.innerHTML = renderArrayTab("socialLinks", renderSocialCard, "Social Link");
+  else if (tab === "Social") panel.innerHTML = note("Instagram appears as an icon in the top-right of the navigation bar on every page, instead of in the Contact section, so it stays visible without competing with the WhatsApp button. All other platforms here show in the Contact section and footer as usual.") + renderArrayTab("socialLinks", renderSocialCard, "Social Link");
   else if (tab === "News") panel.innerHTML = renderNewsTab();
   else if (tab === "Blog") panel.innerHTML = renderBlogTab();
 
@@ -270,7 +270,7 @@ function renderHeaderFooterTab() {
     </div>
     <div class="admin-card">
       <p class="admin-card-title">Header Navigation Links</p>
-      ${note("These appear in the top navigation bar, in this order, and scroll to a matching section on the homepage. \"Blog\" and \"News\" always appear after these automatically, linking to their own pages — edit their content in the Blog and News tabs.")}
+      ${note("Only \"About\", \"Services\" and \"Process\" appear in the top navigation bar — keeping the header short and uncluttered. Every other item here (Stories, FAQ, Contact) automatically moves to the footer instead, alongside \"Blog\" and \"News\". Renaming an item still works either way, as long as it doesn't match About/Services/Process it'll show in the footer.")}
       ${stringListEditor("nav", draft.nav, "Add Nav Link")}
     </div>
     <div class="admin-card">

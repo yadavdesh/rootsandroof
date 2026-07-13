@@ -3,7 +3,7 @@
    Used by both index.html (public site) and admin.html
    ========================================================== */
 
-const STORAGE_KEY = "rootsandroof_content_v9";
+const STORAGE_KEY = "rootsandroof_content_v11";
 const ADMIN_AUTH_KEY = "rr_admin_auth";
 const ADMIN_PASSWORD = "rootsandroof2026";
 
@@ -81,8 +81,9 @@ const DEFAULT_CONTENT = {
   },
   socialLinks: [
     { platform: "Instagram", url: "https://instagram.com/rootsandroof" },
+    { platform: "Facebook", url: "https://facebook.com/rootsandroof" },
+    { platform: "YouTube", url: "https://youtube.com/@rootsandroof" },
     { platform: "LinkedIn", url: "" },
-    { platform: "Facebook", url: "" },
     { platform: "WhatsApp", url: "" },
   ],
   newsPage: {

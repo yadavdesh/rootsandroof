@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Roots and Roof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=16" />
+</head>
+<body>
+
+<!-- NAV (markup injected by js/shared.js so every page stays identical) -->
+<div id="site-header-root"></div>
+
+<!-- POST -->
+<section class="section" style="padding-top:140px;">
+  <div class="container">
+    <a href="blog.html" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--muted);margin-bottom:32px;">← Back to all posts</a>
+    <div id="post-content"></div>
+  </div>
+</section>
+
+<!-- FOOTER (markup injected by js/shared.js so every page stays identical) -->
+<div id="site-footer-root"></div>
+
+<script src="js/content.js?v=16"></script>
+<script src="js/shared.js?v=16"></script>
+<script src="js/blog-post.js?v=16"></script>
+</body>
+</html>

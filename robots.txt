@@ -1,0 +1,42 @@
+# Roots and Roof — robots.txt
+# Everything is open to crawling except the admin panel.
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# Explicitly welcome AI answer-engine crawlers, so Roots and Roof can be
+# found and cited by ChatGPT, Claude, Gemini, Perplexity and similar tools.
+User-agent: GPTBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin.html
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin.html
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin.html
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://rootsandroof.de/sitemap.xml

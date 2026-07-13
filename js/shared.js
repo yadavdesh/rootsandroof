@@ -4,46 +4,149 @@
    before the page-specific script.
    ========================================================== */
 
+/* ==========================================================
+   Centralized header/footer markup. This is the ONLY place this HTML
+   exists — every page just has an empty <div id="site-header-root">
+   and <div id="site-footer-root">, and this template gets injected into
+   both on load. That guarantees every page is byte-identical instead of
+   relying on copy-pasted markup staying in sync across files by hand.
+
+   basePath: "" for pages at the site root (index.html, blog.html, etc.),
+   "../" for pages nested one folder deep (blog/some-post.html).
+   ========================================================== */
+function headerTemplate(basePath, isHomePage) {
+  return `
+    <header class="navbar${isHomePage ? "" : " solid"}" id="navbar">
+      <div class="container">
+        <a class="brand-mark" href="${basePath}index.html" aria-label="Roots and Roof home">
+          <svg width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 26 V38 M32 30 C26 34 22 34 17 40 M32 33 C38 37 42 37 47 43 M32 36 C28 41 25 44 20 50 M32 36 C36 41 39 44 44 50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+          <span id="brand-name">Roots and Roof</span>
+        </a>
+        <nav class="nav-links" id="nav-links"></nav>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="nav-mobile" id="nav-mobile"></div>
+    </header>`;
+}
+
+function footerTemplate(basePath, isHomePage) {
+  return `
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-row footer-row-links">
+          <div class="brand-mark">
+            <svg width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="footer-brand-name">Roots and Roof</span>
+          </div>
+          <div class="footer-links" id="footer-links"></div>
+        </div>
+        <div class="footer-row footer-row-contact">
+          <div class="footer-contact" id="footer-contact"></div>
+          <div class="social-row" id="footer-social"></div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-note" id="footer-note"></p>
+          <div class="footer-meta">
+            <p id="footer-copyright"></p>
+            <a href="${basePath}admin.html">Admin</a>
+          </div>
+        </div>
+      </div>
+    </footer>`;
+}
+
 function el(id) { return document.getElementById(id); }
 
-/* Extra nav links that go to standalone pages rather than homepage sections */
+/* Top nav is intentionally short: only these sections stay in the header.
+   Everything else (Stories, FAQ, Contact, Blog, News) moves to the footer. */
+const TOP_NAV_LABELS = ["about", "services", "process"];
+/* Extra links that go to standalone pages rather than homepage sections —
+   these live in the footer now, not the top nav. */
 const PAGE_LINKS = [
   { label: "Blog", href: "blog.html" },
   { label: "News", href: "news.html" },
 ];
 
-/* Build nav markup. On the homepage, section links smooth-scroll via data-scroll.
-   On other pages, the same links point back to index.html#section instead. */
-function buildNavLinks(content, isHomePage) {
+/* Build top nav markup. On the homepage, section links smooth-scroll via
+   data-scroll. On other pages, the same links point back to index.html#section. */
+function buildNavLinks(content, isHomePage, basePath) {
   const sectionLinks = content.nav
+    .filter((n) => TOP_NAV_LABELS.includes(n.toLowerCase()))
     .map((n) => {
       const slug = n.toLowerCase();
       return isHomePage
         ? `<button class="nav-link" data-scroll="${slug}">${n}</button>`
-        : `<a class="nav-link" href="index.html#${slug}">${n}</a>`;
+        : `<a class="nav-link" href="${basePath}index.html#${slug}">${n}</a>`;
     })
     .join("");
-  const pageLinks = PAGE_LINKS.map((p) => `<a class="nav-link" href="${p.href}">${p.label}</a>`).join("");
   const cta = isHomePage
     ? `<button class="btn btn-gold" data-scroll="contact" style="padding:10px 20px">Get in Touch</button>`
-    : `<a class="btn btn-gold" href="index.html#contact" style="padding:10px 20px">Get in Touch</a>`;
-  return { sectionLinks, pageLinks, cta };
+    : `<a class="btn btn-gold" href="${basePath}index.html#contact" style="padding:10px 20px">Get in Touch</a>`;
+  return { sectionLinks, cta };
 }
 
-function renderNav(content, isHomePage) {
-  const { sectionLinks, pageLinks, cta } = buildNavLinks(content, isHomePage);
+/* Everything NOT in the top nav (Stories, FAQ, Contact, plus Blog & News) */
+function buildFooterLinks(content, isHomePage, basePath) {
+  const remaining = content.nav.filter((n) => !TOP_NAV_LABELS.includes(n.toLowerCase()));
+  const sectionLinks = remaining
+    .map((n) => {
+      const slug = n.toLowerCase();
+      return isHomePage
+        ? `<button class="footer-link" data-scroll="${slug}">${n}</button>`
+        : `<a class="footer-link" href="${basePath}index.html#${slug}">${n}</a>`;
+    })
+    .join("");
+  const pageLinks = PAGE_LINKS.map((p) => `<a class="footer-link" href="${basePath}${p.href}">${p.label}</a>`).join("");
+  return sectionLinks + pageLinks;
+}
+
+/* Instagram gets its own prominent, brand-colored spot in the top nav
+   rather than blending into the generic social icon row. */
+function instagramNavLink(content, withLabel) {
+  const insta = (content.socialLinks || []).find((s) => s.platform === "Instagram" && s.url && s.url.trim());
+  if (!insta) return "";
+  return `<a href="${insta.url}" target="_blank" rel="noopener noreferrer" class="nav-insta" title="Instagram" aria-label="Instagram">
+    ${instagramGlyph(26)}${withLabel ? "<span>Instagram</span>" : ""}
+  </a>`;
+}
+
+/* Instagram's actual brand gradient, not a monochrome outline —
+   makes it read as "Instagram" at a glance instead of a generic icon. */
+function instagramGlyph(size = 24) {
+  const gid = "igGrad" + size;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24">
+    <defs>
+      <linearGradient id="${gid}" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#FEDA75"/>
+        <stop offset="25%" stop-color="#FA7E1E"/>
+        <stop offset="55%" stop-color="#D62976"/>
+        <stop offset="80%" stop-color="#962FBF"/>
+        <stop offset="100%" stop-color="#4F5BD5"/>
+      </linearGradient>
+    </defs>
+    <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#${gid})"/>
+    <circle cx="12" cy="12" r="5" fill="none" stroke="#fff" stroke-width="1.8"/>
+    <circle cx="17.2" cy="6.8" r="1.15" fill="#fff"/>
+  </svg>`;
+}
+
+function renderNav(content, isHomePage, basePath) {
+  const { sectionLinks, cta } = buildNavLinks(content, isHomePage, basePath);
   el("brand-name").textContent = content.brand.name;
-  el("nav-links").innerHTML = sectionLinks + pageLinks + cta;
+  el("nav-links").innerHTML = sectionLinks + cta + instagramNavLink(content, false);
   el("nav-mobile").innerHTML =
     sectionLinks +
-    pageLinks +
     (isHomePage
       ? `<button class="btn btn-gold" data-scroll="contact" style="justify-content:center">Get in Touch</button>`
-      : `<a class="btn btn-gold" href="index.html#contact" style="justify-content:center">Get in Touch</a>`);
+      : `<a class="btn btn-gold" href="${basePath}index.html#contact" style="justify-content:center">Get in Touch</a>`) +
+    instagramNavLink(content, true);
 }
 
-function renderFooter(content) {
+function renderFooter(content, isHomePage, basePath) {
   el("footer-brand-name").textContent = content.brand.name;
+  el("footer-links").innerHTML = buildFooterLinks(content, isHomePage, basePath || "");
   el("footer-contact").innerHTML = `<span>${content.contact.email}</span>`;
   el("footer-social").innerHTML = socialIconLinks(content.socialLinks);
   el("footer-note").textContent = content.footer.note;
@@ -132,13 +235,17 @@ function wireReveal() {
   document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
 }
 
-/* Call once per page after rendering page-specific content */
-function initSharedChrome(content, isHomePage) {
-  document.title = `${content.brand.name} — ${content.brand.tagline}`;
-  renderNav(content, isHomePage);
-  renderFooter(content);
+/* Call once per page after rendering page-specific content.
+   basePath: "" for root pages, "../" for pages nested in /blog/.
+   Note: document.title is intentionally NOT set here — each page sets its
+   own, matching the SEO-optimised <title> already in its HTML <head>. */
+function initSharedChrome(content, isHomePage, basePath) {
+  basePath = basePath || "";
+  el("site-header-root").innerHTML = headerTemplate(basePath, isHomePage);
+  el("site-footer-root").innerHTML = footerTemplate(basePath, isHomePage);
+  renderNav(content, isHomePage, basePath);
+  renderFooter(content, isHomePage, basePath);
   wireNavCommon();
-  wireReveal();
   wireHashArrival();
 }
 
