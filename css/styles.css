@@ -3,19 +3,19 @@
    ========================================================== */
 
 :root {
-  /* Terracotta & espresso — inspired by Berlin brick and Indian terracotta/spice tones,
-     rather than the generic "trustworthy green" template. Variable names kept stable
-     for compatibility; only the hex values changed. */
-  --green: #b1502f;        /* terracotta — primary accent-mid, section fills */
-  --green-dark: #241c16;   /* espresso — darkest sections (footer, process, stats) */
-  --green-tint: #f1e3d6;   /* warm tint */
-  --cream: #f6f1e7;
-  --cream-deep: #ece1cd;
-  --gold: #b6902f;         /* brass — buttons, numerals, icon accents */
-  --gold-dark: #93701f;
+  /* Navy & champagne-gold — a professional real-estate-advisory palette:
+     trustworthy, upscale, and neutral enough to sit well behind a headshot,
+     rather than the warm red/terracotta tried previously. */
+  --green: #24344a;        /* deep navy — mid sections (nav-scrolled, contact bg, badge) */
+  --green-dark: #141b26;   /* near-black navy — darkest sections (footer, process, stats) */
+  --green-tint: #e8ecf1;   /* cool tint */
+  --cream: #f7f3ec;
+  --cream-deep: #e9e2d3;
+  --gold: #b8963f;         /* champagne gold — buttons, numerals, icon accents */
+  --gold-dark: #93762f;
   --white: #ffffff;
-  --ink: #251c15;
-  --muted: #6b5f52;
+  --ink: #1c2430;
+  --muted: #5c6570;
   --error: #b0453e;
   --font-display: "Fraunces", serif;
   --font-body: "Inter", sans-serif;

@@ -89,7 +89,7 @@ function render(content) {
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 8C7 8 5 10 5 12.5S7 17 9.5 17c.3 0 .6 0 .9-.1-.4 1.6-1.8 2.9-3.6 3.3l.5 1.7c3.2-.7 5.7-3.5 5.7-7.2V12.5C13 10 11 8 9.5 8Zm9 0c-2.5 0-4.5 2-4.5 4.5S16 17 18.5 17c.3 0 .6 0 .9-.1-.4 1.6-1.8 2.9-3.6 3.3l.5 1.7c3.2-.7 5.7-3.5 5.7-7.2V12.5C22 10 20 8 18.5 8Z"/></svg>
         </div>
         <p class="quote-text">"${t.quote}"</p>
-        <div class="testi-stars">${Array.from({ length: t.rating }).map(() => `<svg width="14" height="14" viewBox="0 0 24 24" fill="#b6902f"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>`).join("")}</div>
+        <div class="testi-stars">${Array.from({ length: t.rating }).map(() => `<svg width="14" height="14" viewBox="0 0 24 24" fill="#b8963f"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9"/></svg>`).join("")}</div>
         <p class="name">${t.name}</p>
         <p class="loc">${t.location}</p>
       </div>`

@@ -39,8 +39,7 @@ const DEFAULT_CONTENT = {
     ownerTitle: "Founder & Principal Advisor",
     ownerBio:
       "Desh has spent over a decade between Berlin and the Indian diaspora community, helping families and investors turn 'someday' into a signed contract. He built Roots and Roof around a simple idea — that finding a home abroad shouldn't mean navigating it alone.",
-    ownerImage:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
+    ownerImage: "images/owner-photo.png",
     highlights: [
       "Fluent guidance in English, Hindi and German",
       "Direct network of notaries, banks and surveyors",

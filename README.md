@@ -1,6 +1,8 @@
 # Roots and Roof — Static Site
 
-**Design note:** the palette moved from the generic "deep green + gold" template look to a warmer, more distinctive **terracotta & espresso** palette — inspired by Berlin brick architecture and Indian terracotta/spice tones, which ties more directly into the "Roots and Roof" story than a stock green. Colors live as CSS variables at the top of `css/styles.css` if you want to adjust further.
+**Design note:** the palette is now **navy & champagne-gold** — a professional, trustworthy real-estate-advisory look (think private banking, not tech startup), replacing an earlier warm terracotta direction that read too red for the brand. Colors live as CSS variables at the top of `css/styles.css` if you want to adjust further.
+
+**Photos:** the About section now uses a local photo at `images/owner-photo.png` rather than a remote URL — more reliable (nothing to break if an external host goes down) and it's already included in this folder. Swap it any time by replacing that file, pasting a new URL in the admin panel, or using the admin panel's "Upload from device" button.
 
 Plain HTML/CSS/JS — no build step, no dependencies. Ready to drag-and-drop onto Netlify.
 
