@@ -1,34 +1,19 @@
 /* ==========================================================
-   Roots and Roof — public site behaviour
+   Roots and Roof — homepage-specific behaviour
+   (nav/footer/reveal logic now lives in js/shared.js)
    ========================================================== */
 
 let SITE_CONTENT = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   SITE_CONTENT = loadContent();
+  initSharedChrome(SITE_CONTENT, true);
   render(SITE_CONTENT);
-  wireNav(SITE_CONTENT);
-  wireScroll();
-  wireReveal();
   wireFAQ();
   wireContactForm();
 });
 
-function el(id) { return document.getElementById(id); }
-function icon(name, size = 20) {
-  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ICONS.Home}</svg>`;
-}
-
 function render(content) {
-  document.title = `${content.brand.name} — ${content.brand.tagline}`;
-
-  // Nav / brand
-  el("brand-name").textContent = content.brand.name;
-  el("footer-brand-name").textContent = content.brand.name;
-  const navLinks = content.nav.map((n) => `<button class="nav-link" data-scroll="${n.toLowerCase()}">${n}</button>`).join("");
-  el("nav-links").innerHTML = navLinks + `<button class="btn btn-gold" data-scroll="contact" style="padding:10px 20px">Get in Touch</button>`;
-  el("nav-mobile").innerHTML = navLinks + `<button class="btn btn-gold" data-scroll="contact" style="justify-content:center">Get in Touch</button>`;
-
   // Hero
   el("hero-bg-img").src = content.hero.backgroundImage;
   el("hero-eyebrow").textContent = content.hero.eyebrow;
@@ -78,7 +63,7 @@ function render(content) {
     .map(
       (t) => `
       <div class="testi-card reveal">
-        <div class="quote-icon">${icon("FileText", 22).replace(/<path[^>]*\/>|<path[^>]*>.*?<\/path>/g, "")}
+        <div class="quote-icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 8C7 8 5 10 5 12.5S7 17 9.5 17c.3 0 .6 0 .9-.1-.4 1.6-1.8 2.9-3.6 3.3l.5 1.7c3.2-.7 5.7-3.5 5.7-7.2V12.5C13 10 11 8 9.5 8Zm9 0c-2.5 0-4.5 2-4.5 4.5S16 17 18.5 17c.3 0 .6 0 .9-.1-.4 1.6-1.8 2.9-3.6 3.3l.5 1.7c3.2-.7 5.7-3.5 5.7-7.2V12.5C22 10 20 8 18.5 8Z"/></svg>
         </div>
         <p class="quote-text">"${t.quote}"</p>
@@ -116,75 +101,6 @@ function render(content) {
       Chat with us on WhatsApp
     </a>`;
   el("contact-social").innerHTML = socialIconLinks(content.socialLinks);
-
-  // Footer
-  el("footer-contact").innerHTML = `<span>${content.contact.email}</span>`;
-  el("footer-social").innerHTML = socialIconLinks(content.socialLinks);
-  el("footer-note").textContent = content.footer.note;
-  el("footer-copyright").textContent = `© ${new Date().getFullYear()} ${content.brand.name}`;
-}
-
-function socialIconLinks(links) {
-  return (links || [])
-    .filter((s) => s.url && s.url.trim())
-    .map((s) => {
-      const svgPath = SOCIAL_ICONS[s.platform] || SOCIAL_ICONS.Instagram;
-      return `<a href="${s.url}" target="_blank" rel="noopener noreferrer" title="${s.platform}">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg>
-      </a>`;
-    })
-    .join("");
-}
-
-function mailIcon() {
-  return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`;
-}
-function whatsappIcon() {
-  return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.9 19L4 20Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.5 0 1-.7 1-1.3 0-.3-.2-.5-.4-.6l-1.6-.8c-.3-.1-.5-.1-.7.1l-.5.6c-1-.5-1.9-1.4-2.4-2.4l.6-.5c.2-.2.2-.5.1-.7l-.8-1.6c-.1-.3-.4-.4-.6-.4-.6 0-1.2.5-1.2 1Z"/></svg>`;
-}
-function instaIcon() {
-  return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>`;
-}
-function pinIcon() {
-  return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
-}
-
-/* ---- Nav ---- */
-function wireNav() {
-  window.addEventListener("scroll", () => {
-    el("navbar").classList.toggle("scrolled", window.scrollY > 40);
-  });
-  const toggle = el("nav-toggle");
-  const mobile = el("nav-mobile");
-  toggle.addEventListener("click", () => mobile.classList.toggle("open"));
-
-  document.addEventListener("click", (e) => {
-    const target = e.target.closest("[data-scroll]");
-    if (!target) return;
-    const id = target.getAttribute("data-scroll");
-    const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
-    mobile.classList.remove("open");
-  });
-}
-
-/* ---- Smooth scroll fallback already handled via data-scroll ---- */
-function wireScroll() {}
-
-/* ---- Reveal on scroll ---- */
-function wireReveal() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-  document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
 }
 
 /* ---- FAQ accordion ---- */

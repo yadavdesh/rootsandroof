@@ -45,9 +45,18 @@ netlify deploy --prod
 ## Custom domain
 Once deployed, go to Site settings → Domain management → Add a custom domain, and point your domain's DNS to Netlify as instructed there.
 
+## Blog & News pages
+- `blog.html` — five original posts written for Roots and Roof, each tied to a real market development. Preview cards up top, full posts below (click "Read the full post" to jump down).
+- `news.html` — five real, sourced news items about the Berlin/German property market, each linking back to its original source.
+- Both are fully editable in Admin → **News** and **Blog** tabs: add, remove, or rewrite any item, and the page updates instantly. Items are sorted newest-first automatically based on the date field, so you don't need to reorder anything manually — just update the date.
+- Both pages share the same header/nav/footer as the homepage (edited in Admin → Header & Footer), so your brand name, nav links, and social icons stay consistent everywhere.
+
+
 ## Admin dashboard
 - Visit `yoursite.com/admin.html`
-- Password: `rootsandroof2026` (change this in `js/content.js` — search for `ADMIN_PASSWORD`)
+- **Two layers of protection now:**
+  1. **Server-side login (real security)** — Netlify itself will prompt for a username/password *before* sending `admin.html` to the browser at all. Default: `desh` / `rootsandroof2026`. Change these anytime by editing the `_headers` file in this folder (it's a plain text file — open it, edit the line, redeploy). This only works once the site is deployed on Netlify; it does nothing when opening `admin.html` as a local file.
+  2. **In-app password (convenience only)** — after passing the Netlify login above, the admin panel itself still asks for `rootsandroof2026` before showing the dashboard. This one lives in plain JavaScript (`js/content.js`, search `ADMIN_PASSWORD`) and is downloadable by anyone who gets past layer 1 — so it's not real security on its own, just a second small speed bump. Change it there if you like, but the Netlify login above is what actually keeps strangers out.
 - Edits are saved to the browser's `localStorage`, so they persist on the device/browser used to make them, but do **not** sync across visitors or devices — this is a client-side only setup with no backend/database.
 - The "Reset" button restores all content to the original defaults.
 

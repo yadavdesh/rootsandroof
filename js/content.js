@@ -3,7 +3,7 @@
    Used by both index.html (public site) and admin.html
    ========================================================== */
 
-const STORAGE_KEY = "rootsandroof_content_v8";
+const STORAGE_KEY = "rootsandroof_content_v9";
 const ADMIN_AUTH_KEY = "rr_admin_auth";
 const ADMIN_PASSWORD = "rootsandroof2026";
 
@@ -84,6 +84,95 @@ const DEFAULT_CONTENT = {
     { platform: "LinkedIn", url: "" },
     { platform: "Facebook", url: "" },
     { platform: "WhatsApp", url: "" },
+  ],
+  newsPage: {
+    eyebrow: "Market Watch",
+    heading: "Latest news on the German property market",
+    intro: "A running list of what's actually happening in Berlin and German real estate — sourced from the analysts and reports we read ourselves, summarised in plain language.",
+  },
+  news: [
+    {
+      title: "Berlin apartment prices are ticking up again",
+      source: "Guthmann Estate — Berlin Market Intelligence",
+      sourceUrl: "https://guthmann.estate/en/market-intelligence/berlin/apartments/",
+      date: "2026-07-08",
+      summary:
+        "After the correction of 2022 and 2023, Berlin apartment prices are rising again. Analysts note this happened even as the ECB's key rate ticked back up — which they read as a sign the city's property market is holding its ground on genuine demand, not just cheap borrowing.",
+    },
+    {
+      title: "Berlin's home market is outshining its office market",
+      source: "The Grounds Real Estate Development AG (citing BNP Paribas Real Estate)",
+      sourceUrl: "https://www.thegroundsag.com/en/2026/07/09/berlins-investment-market-at-mid-year-commercial-sector-remains-subdued-residential-segment-shows-greater-stability/",
+      date: "2026-07-09",
+      summary:
+        "Commercial property investment in Berlin dropped by more than half in the first half of 2026, but residential property told a very different story — around €600 million changed hands, keeping Berlin at the top of Germany's most active housing markets. Tight supply and steady demand are keeping homes attractive even while offices sit quiet.",
+    },
+    {
+      title: "Berlin rents are cooling, but buying prices are creeping up",
+      source: "The Grounds Real Estate Development AG (citing CBRE & Berlin Hyp)",
+      sourceUrl: "https://www.thegroundsag.com/en/2026/04/02/berlin-house-prices-rise-again-as-rental-growth-slows/",
+      date: "2026-04-02",
+      summary:
+        "The latest Berlin Residential Market Report from CBRE and Berlin Hyp shows rents are still rising, just more slowly than in past years — while prices for buying an apartment have started climbing again for the first time since 2022. New construction laws aim to speed up building, but their effect on supply likely won't show for a while yet.",
+    },
+    {
+      title: "German mortgage rates are holding steady, for now",
+      source: "Global Property Guide (citing European Central Bank data)",
+      sourceUrl: "https://www.globalpropertyguide.com/europe/germany/price-history",
+      date: "2026-06-01",
+      summary:
+        "The average rate on new German home loans sat at 3.72% in March 2026, a little higher than a year earlier. Most mortgage brokers expect rates to stay roughly where they are in the short term, though many think they'll drift upward over the next couple of years as government borrowing rises.",
+    },
+    {
+      title: "Germany-wide home prices are set to grow 3–4% this year",
+      source: "LBBW Bank Research",
+      sourceUrl: "https://www.lbbw.de/article/news-and-assessments-2025/2026-annual-outlook-real-estate_ak1gtkvbhe_e.html",
+      date: "2026-03-17",
+      summary:
+        "LBBW's research team expects German property prices to rise 3–4% this year, helped along by renewed appetite for mortgages — new home loans were about a third higher in the first half of 2025 than the year before. Still, they don't expect a return to the rapid growth of the pre-2022 boom years.",
+    },
+  ],
+  blogPage: {
+    eyebrow: "The Roots and Roof Journal",
+    heading: "Notes on buying property in Berlin, from someone who does this every day",
+    intro: "No jargon, no sales pitch — just honest takes on what's happening in the market and what it actually means if you're buying from abroad.",
+  },
+  blogPosts: [
+    {
+      title: "Berlin prices are moving again — should you rush or relax?",
+      slug: "berlin-prices-moving-again",
+      date: "2026-07-10",
+      excerpt: "Berlin's property market spent two years cooling off. Now it's warming up again. Here's what that actually means if you're planning to buy from abroad.",
+      body: "Berlin's property market spent the last couple of years catching its breath. Prices dipped, sellers got more realistic, and buyers who'd been priced out during the boom finally had room to negotiate. That phase is ending.\n\nThe latest data shows Berlin apartment prices climbing again — even with the European Central Bank's rate ticking back up, which normally cools a market down, not heats it up. To us, that's the interesting part. It suggests people aren't buying because money is cheap. They're buying because they actually want to live here, or because they trust Berlin as a long-term bet. That's a healthier kind of demand than the frenzy we saw a few years back.\n\nSo should you rush? Not blindly. A market moving from 'correction' to 'recovery' usually still has room before it gets genuinely expensive again — this isn't 2021 all over again. But it does mean the window for finding a motivated seller willing to negotiate hard is narrowing, district by district.\n\nWhat we'd actually tell a client right now: get your financing pre-approved before you fall in love with a place, not after. In a market that's picking back up, the buyers who move fastest once they find the right apartment are the ones who already have their paperwork sorted. Everything else — comparing neighbourhoods, understanding a building's condition, negotiating the price — takes time you can afford. Financing delays are the one thing that can cost you the apartment.",
+    },
+    {
+      title: "Why Berlin apartments are a safer bet than Berlin offices right now",
+      slug: "apartments-safer-than-offices",
+      date: "2026-07-11",
+      excerpt: "Half of Berlin's office deals evaporated this year. Homes didn't blink. What that gap tells overseas buyers about where the real demand is.",
+      body: "Here's a number that stood out to us this month: commercial property investment in Berlin — offices, retail, that kind of thing — dropped by more than half in the first six months of 2026 compared to last year. Meanwhile, residential property quietly did the opposite, pulling in around €600 million and keeping Berlin at the top of Germany's housing investment rankings.\n\nWhy does this matter if you're buying an apartment, not an office building? Because it tells you something about where real, durable demand actually sits in this city.\n\nOffices are exposed to things like remote work trends, company downsizing, and corporate budget cycles — all of which can turn on a dime. Housing is exposed to something much more stubborn: people need somewhere to live, and Berlin has been building far less than it needs for over a decade. That structural shortage doesn't disappear just because interest rates move around.\n\nFor an overseas buyer, this is reassuring in a specific way. You're not betting on an office market that rises and falls with quarterly corporate earnings calls. You're betting on a housing shortage that multiple governments — city and federal — have openly admitted they haven't solved yet. That's not exciting news for Berlin's renters, but if you're buying, it's exactly the kind of demand you want underneath your investment.",
+    },
+    {
+      title: "Renting in Berlin is getting (slightly) easier. Buying isn't.",
+      slug: "renting-easier-buying-isnt",
+      date: "2026-04-10",
+      excerpt: "If you've been waiting for Berlin to get cheaper before you buy, the latest report has some news for you.",
+      body: "A new report from CBRE and Berlin Hyp landed this spring, and it tells two different stories depending on whether you're renting or buying.\n\nOn the rental side, there's genuinely good news: asking rents are still climbing, but much more gently than they were a couple of years ago. If you've been quietly hoping the rental market would calm down before you commit to buying, it's happening — just slowly.\n\nOn the buying side, it's the opposite direction. Prices for owner-occupied apartments have started rising again for the first time since 2022. So if your plan was 'wait for rents and prices to both come down,' the data suggests that's not quite how this recovery is playing out. Rents are cooling; purchase prices are warming.\n\nThere is a longer-term fix in motion — new construction laws designed to speed up building approvals are working their way through Berlin's system. But new supply takes years to show up as actual finished apartments, so don't expect this year's prices to reflect it.\n\nOur honest read: if you're planning to live in what you buy, the maths of 'rent vs buy' is looking a little more buy-favourable than it has in a while, simply because rents aren't falling and purchase financing has stabilised. If you're an investor eyeing rental yield specifically, the slower rent growth is worth factoring into your return calculations rather than assuming the sharp increases of past years will continue.",
+    },
+    {
+      title: "What a 3.72% mortgage rate actually means for your budget",
+      slug: "mortgage-rate-372-percent",
+      date: "2026-06-15",
+      excerpt: "German mortgage rates aren't falling back to the days of almost-free money — and that's not quite the disaster it sounds like. Here's the maths.",
+      body: "Every few weeks, a client asks us some version of: 'Should I wait for rates to drop before I buy?' The honest answer is usually no, and here's why.\n\nThe average rate on new German home loans is sitting around 3.72% as of early 2026 — a little higher than a year ago. Most mortgage brokers expect that to hold roughly steady in the near term, with a gradual drift upward over the next couple of years as government borrowing increases. Nobody serious is forecasting a return to the sub-2% rates of the 2015–2021 era. That period was the exception, not the rule.\n\nSo what does 3.72% actually mean in practice? On a €400,000 mortgage over 20 years, the difference between 3.7% and, say, 3.2%, works out to roughly €100–120 a month. Meaningful, but not the difference between affording an apartment and not. What actually moves the needle far more is the size of your down payment and which state you're buying in, since property transfer tax alone can swing by thousands of euros between, say, Bavaria and Berlin.\n\nOur advice: don't let 'waiting for a better rate' become the reason you never buy. Lock in a rate you can comfortably live with today, and put your energy into the things you actually control — a bigger deposit, a thorough building inspection, and a lender who's genuinely used to working with international buyers. Those decisions move your outcome far more than a half-percent rate swing you can't predict anyway.",
+    },
+    {
+      title: "Germany's property market isn't booming. That's exactly why it's worth a look.",
+      slug: "not-booming-worth-a-look",
+      date: "2026-03-20",
+      excerpt: "No 2015-style frenzy, no bidding wars — just steady 3–4% growth. For a first-time overseas buyer, boring might be the best word you'll hear all year.",
+      body: "LBBW's research team put out their annual property outlook recently, and the headline number is almost deliberately unexciting: 3–4% price growth expected across Germany this year, helped along by renewed demand for mortgages, which were running about a third higher in the first half of 2025 than the year before.\n\nNo frenzy. No bidding wars. No stories about apartments selling for 20% over asking in a weekend. Just steady, unremarkable growth.\n\nWe think that's actually the headline worth paying attention to, especially if you're buying property in another country for the first time. A market moving in small, predictable steps is a much easier one to plan around than one swinging wildly in either direction. You're not trying to time a peak. You're not panic-buying because prices might jump 15% next quarter. You have room to actually do your homework — visit the neighbourhood twice, get a proper building survey, compare two or three financing offers — without feeling like the opportunity will vanish while you're doing it.\n\nGermany's reputation as Europe's 'boring but stable' property market has always been part of its appeal for long-term investors, and this year's forecast is really just that reputation holding up. If you've been nervous about buying into a market you don't fully understand yet, 'steady and unremarkable' is, in our experience, exactly the kind of market that rewards patience over speed.",
+    },
   ],
   footer: {
     note: "Roots and Roof is an independent real estate advisory and is not a licensed bank or law firm. We coordinate with licensed partners for financing and legal matters.",

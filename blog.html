@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Roots and Roof</title>
+<meta name="description" content="Notes on buying property in Berlin, from Roots and Roof — honest takes on the market and what it means for overseas buyers." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=11" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="navbar" id="navbar">
+  <div class="container">
+    <a class="brand-mark" href="index.html" aria-label="Roots and Roof home">
+      <svg width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 26 V38 M32 30 C26 34 22 34 17 40 M32 33 C38 37 42 37 47 43 M32 36 C28 41 25 44 20 50 M32 36 C36 41 39 44 44 50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+      <span id="brand-name">Roots and Roof</span>
+    </a>
+    <nav class="nav-links" id="nav-links"></nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile"></div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <p class="eyebrow reveal" id="page-eyebrow"></p>
+    <h1 class="reveal" id="page-heading"></h1>
+    <p class="intro reveal" id="page-intro"></p>
+  </div>
+</section>
+
+<!-- BLOG GRID (previews) -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+</section>
+
+<!-- FULL ARTICLES -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div id="blog-articles"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="brand-mark">
+        <svg width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="footer-brand-name">Roots and Roof</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div class="footer-contact" id="footer-contact"></div>
+        <div class="social-row" id="footer-social"></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-note" id="footer-note"></p>
+      <div class="footer-meta">
+        <p id="footer-copyright"></p>
+        <a href="admin.html">Admin</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/content.js?v=11"></script>
+<script src="js/shared.js?v=11"></script>
+<script src="js/blog.js?v=11"></script>
+</body>
+</html>

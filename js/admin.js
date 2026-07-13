@@ -2,7 +2,7 @@
    Roots and Roof — Admin dashboard behaviour
    ========================================================== */
 
-const TABS = ["Header & Footer", "Hero", "About", "Services", "Process", "Stories", "FAQ", "Contact", "Social"];
+const TABS = ["Header & Footer", "Hero", "About", "Services", "Process", "Stories", "FAQ", "Contact", "Social", "News", "Blog"];
 let draft = null;
 let currentTab = "Header & Footer";
 
@@ -252,6 +252,8 @@ function renderTab(tab) {
   else if (tab === "FAQ") panel.innerHTML = renderArrayTab("faq", renderFaqCard, "Question");
   else if (tab === "Contact") panel.innerHTML = renderContactTab();
   else if (tab === "Social") panel.innerHTML = renderArrayTab("socialLinks", renderSocialCard, "Social Link");
+  else if (tab === "News") panel.innerHTML = renderNewsTab();
+  else if (tab === "Blog") panel.innerHTML = renderBlogTab();
 
   bindFieldEvents();
   wireArrayButtons();
@@ -268,7 +270,7 @@ function renderHeaderFooterTab() {
     </div>
     <div class="admin-card">
       <p class="admin-card-title">Header Navigation Links</p>
-      ${note("These appear in the top navigation bar, in this order. Each label must match a section on the page to scroll to it correctly.")}
+      ${note("These appear in the top navigation bar, in this order, and scroll to a matching section on the homepage. \"Blog\" and \"News\" always appear after these automatically, linking to their own pages — edit their content in the Blog and News tabs.")}
       ${stringListEditor("nav", draft.nav, "Add Nav Link")}
     </div>
     <div class="admin-card">
@@ -365,6 +367,56 @@ function renderSocialCard(s, i) {
     </div>`;
 }
 
+function renderNewsCard(n, i) {
+  return `
+    <div class="admin-card" data-card="news-${i}">
+      <button class="admin-remove-btn" data-remove="news:${i}">${trashSvg()}</button>
+      <p class="admin-card-title">News Item ${i + 1}</p>
+      ${field("Headline", n.title, `news.${i}.title`)}
+      ${field("Date (YYYY-MM-DD)", n.date, `news.${i}.date`)}
+      ${field("Source Name", n.source, `news.${i}.source`)}
+      ${field("Source URL", n.sourceUrl, `news.${i}.sourceUrl`)}
+      ${field("Summary", n.summary, `news.${i}.summary`, true)}
+    </div>`;
+}
+
+function renderNewsTab() {
+  return `
+    <div class="admin-card">
+      <p class="admin-card-title">News Page Header</p>
+      ${field("Eyebrow", draft.newsPage.eyebrow, "newsPage.eyebrow")}
+      ${field("Heading", draft.newsPage.heading, "newsPage.heading")}
+      ${field("Intro Text", draft.newsPage.intro, "newsPage.intro", true)}
+    </div>
+    ${note("News items are shown newest-first automatically based on the date field, regardless of the order below.")}
+    ${renderArrayTab("news", renderNewsCard, "News Item")}`;
+}
+
+function renderBlogCard(p, i) {
+  return `
+    <div class="admin-card" data-card="blog-${i}">
+      <button class="admin-remove-btn" data-remove="blogPosts:${i}">${trashSvg()}</button>
+      <p class="admin-card-title">Blog Post ${i + 1}</p>
+      ${field("Title", p.title, `blogPosts.${i}.title`)}
+      ${field("URL Slug (no spaces, e.g. berlin-prices-rising)", p.slug, `blogPosts.${i}.slug`)}
+      ${field("Date (YYYY-MM-DD)", p.date, `blogPosts.${i}.date`)}
+      ${field("Excerpt (shown on the preview card)", p.excerpt, `blogPosts.${i}.excerpt`, true)}
+      ${field("Full Post (leave a blank line between paragraphs)", p.body, `blogPosts.${i}.body`, true)}
+    </div>`;
+}
+
+function renderBlogTab() {
+  return `
+    <div class="admin-card">
+      <p class="admin-card-title">Blog Page Header</p>
+      ${field("Eyebrow", draft.blogPage.eyebrow, "blogPage.eyebrow")}
+      ${field("Heading", draft.blogPage.heading, "blogPage.heading")}
+      ${field("Intro Text", draft.blogPage.intro, "blogPage.intro", true)}
+    </div>
+    ${note("Posts are shown newest-first automatically based on the date field. In the full-post text box, leave a blank line between paragraphs — that's how the page knows where to break them up.")}
+    ${renderArrayTab("blogPosts", renderBlogCard, "Blog Post")}`;
+}
+
 function renderContactTab() {
   return `
     <div class="admin-card">
@@ -417,6 +469,8 @@ function wireArrayButtons() {
     testimonials: { name: "New Client", location: "Location", quote: "Their experience...", rating: 5 },
     faq: { q: "New question?", a: "Answer goes here." },
     socialLinks: { platform: "Instagram", url: "" },
+    news: { title: "New headline", source: "Source name", sourceUrl: "https://", date: new Date().toISOString().slice(0, 10), summary: "Summary of the news item." },
+    blogPosts: { title: "New post title", slug: `new-post-${Date.now()}`, date: new Date().toISOString().slice(0, 10), excerpt: "A short preview shown on the blog grid.", body: "Write your post here.\n\nLeave a blank line between paragraphs." },
   };
   Object.keys(addMap).forEach((key) => {
     const btn = document.getElementById(`add-${key}`);
