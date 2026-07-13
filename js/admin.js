@@ -378,12 +378,12 @@ function renderContactTab() {
     <div class="admin-card">
       <p class="admin-card-title">Contact Form Submission</p>
       ${selectField("Where should submissions go?", draft.contact.formMode, "contact.formMode", [
-        { value: "mailto", label: "Open visitor's email app (mailto link) — works immediately, no setup" },
-        { value: "netlify", label: "Netlify Forms — requires manual setup in Netlify dashboard (see note)" },
+        { value: "netlify", label: "Netlify Forms — silent submit, needs one-time setup below" },
+        { value: "mailto", label: "Open visitor's email app (mailto link) — no setup, less seamless" },
       ])}
       ${field("Notification Email", draft.contact.notificationEmail, "contact.notificationEmail")}
       ${note(
-        "Mailto mode (recommended): opens the visitor's own email app, addressed to you. Works the instant you deploy, no dashboard setup. Netlify Forms mode: submissions are captured silently, but Netlify does NOT email you automatically — you must go to your Netlify site dashboard → Forms → Notifications → Add notification → Email notification and enter your address, or messages will sit uncollected and you'll never see them."
+        "Netlify Forms — one-time setup required (2 minutes): (1) Deploy this site on Netlify at least once. (2) In your Netlify dashboard, open this site → Forms tab in the left sidebar. (3) Click Notifications → Add notification → Email notification. (4) Enter the address above and save. After that, every submission is captured silently — no email app pop-up for the visitor — and forwarded straight to your inbox automatically. This step lives entirely in Netlify's dashboard; it can't be set from this admin panel or from code."
       )}
     </div>`;
 }

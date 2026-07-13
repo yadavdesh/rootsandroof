@@ -57,13 +57,17 @@ Once deployed, go to Site settings → Domain management → Add a custom domain
 - **Social** — add/remove/edit links for Instagram, Facebook, LinkedIn, WhatsApp, X, and YouTube. Only platforms with a URL filled in are shown on the live site (in the footer and contact section).
 - **Contact → Contact Form Submission** — choose where the contact form goes: Netlify Forms (recommended if hosting on Netlify — see setup note below) or a `mailto:` link that opens the visitor's own email app.
 
-### Contact form email setup (Netlify Forms)
-The form is pre-wired for Netlify Forms. Once deployed on Netlify:
-1. Go to your site's Netlify dashboard → **Forms**
-2. Submissions will appear here automatically after your first real submission post-deploy
-3. Go to **Forms → Notifications → Add notification → Email notification**, and enter the address you want submissions sent to (same as "Notification Email" in the admin Contact tab, for consistency)
+### Contact form email setup (Netlify Forms) — do this once, it's required
+This is the mode the site ships with: submissions happen silently in the background (no email-app pop-up for the visitor), and the message needs to be forwarded to your inbox. That forwarding step lives entirely in Netlify's dashboard — no code can set it up for you. Steps:
+1. Deploy this site on Netlify at least once (drag-and-drop or Git-connected — either works)
+2. In your Netlify dashboard, open this site → **Forms** in the left sidebar
+3. Click **Notifications → Add notification → Email notification**
+4. Enter `info@rootsandroof.de`, save
+5. Submit the live contact form yourself once to test — the message should land in your Zoho inbox within a minute or two
 
-If you'd rather not use Netlify Forms (e.g. hosting elsewhere), switch the admin dropdown to "mailto" — no setup needed, but it opens the visitor's email client instead of submitting silently.
+Until step 3 is done, submissions are still being captured (visible in that same Forms tab), they just aren't being emailed to you yet.
+
+If you'd rather skip Netlify's dashboard entirely, switch the admin dropdown (Contact → "Where should submissions go?") to **mailto** instead — no setup, but it opens the visitor's own email app rather than submitting silently.
 
 ## Important limitations to know about
 - **Admin auth is client-side only.** The password lives in plain JavaScript, so anyone who views the page source can find it. Fine for a personal/low-stakes site; not real security. For a production-grade login, you'd want a backend (e.g. Netlify Identity, or a small serverless function).

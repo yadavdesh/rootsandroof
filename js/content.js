@@ -3,7 +3,7 @@
    Used by both index.html (public site) and admin.html
    ========================================================== */
 
-const STORAGE_KEY = "rootsandroof_content_v7";
+const STORAGE_KEY = "rootsandroof_content_v8";
 const ADMIN_AUTH_KEY = "rr_admin_auth";
 const ADMIN_PASSWORD = "rootsandroof2026";
 
@@ -76,7 +76,7 @@ const DEFAULT_CONTENT = {
     whatsapp: "https://wa.me/4917645936837",
     instagram: "@rootsandroof",
     city: "Berlin, Germany",
-    formMode: "mailto", // "mailto" (opens the visitor's own email app, addressed to notificationEmail — works immediately, no setup) or "netlify" (captured by Netlify Forms, but requires you to manually add a notification email in the Netlify dashboard first, or messages just sit uncollected)
+    formMode: "netlify", // "netlify" (silent submit, captured by Netlify Forms — requires a one-time notification email setup in the Netlify dashboard, see README) or "mailto" (opens the visitor's own email app instead — no setup, but less seamless)
     notificationEmail: "info@rootsandroof.de",
   },
   socialLinks: [
