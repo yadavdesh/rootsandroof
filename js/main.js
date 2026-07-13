@@ -119,7 +119,6 @@ function render(content) {
     <div class="contact-info-row">${pinIcon()}<span>${content.contact.city}</span></div>
   `;
   el("contact-social").innerHTML = socialIconLinks(content.socialLinks);
-  el("contact-social").classList.add("on-cream");
 
   // Footer
   el("footer-contact").innerHTML = `<span>${content.contact.email}</span>`;

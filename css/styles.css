@@ -147,6 +147,7 @@ p { margin: 0; }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .about-photo {
   position: relative;
+  min-height: 480px;
   background: linear-gradient(135deg, var(--green) 0%, var(--gold-dark) 100%);
   border-radius: 3px;
 }
