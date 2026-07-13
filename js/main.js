@@ -37,13 +37,6 @@ function render(content) {
   el("hero-cta-primary").textContent = content.hero.ctaPrimary;
   el("hero-cta-secondary").textContent = content.hero.ctaSecondary;
 
-  // Stats
-  el("stats-grid").innerHTML = content.stats
-    .map((s) => `<div class="reveal"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`)
-    .join("");
-  el("stats-grid").style.display = "grid";
-  el("stats-grid").style.gridTemplateColumns = "repeat(4, 1fr)";
-
   // About
   el("about-photo").src = content.about.ownerImage;
   el("about-photo").alt = content.about.ownerName;

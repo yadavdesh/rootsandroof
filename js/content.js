@@ -3,7 +3,7 @@
    Used by both index.html (public site) and admin.html
    ========================================================== */
 
-const STORAGE_KEY = "rootsandroof_content_v1";
+const STORAGE_KEY = "rootsandroof_content_v2";
 const ADMIN_AUTH_KEY = "rr_admin_auth";
 const ADMIN_PASSWORD = "rootsandroof2026";
 
@@ -24,12 +24,6 @@ const DEFAULT_CONTENT = {
     backgroundImage:
       "https://images.unsplash.com/photo-1560184897-6c50e5d1a5f8?auto=format&fit=crop&w=1800&q=80",
   },
-  stats: [
-    { value: "80+", label: "Families relocated" },
-    { value: "12", label: "Berlin districts covered" },
-    { value: "€45M+", label: "Property value advised" },
-    { value: "6", label: "Languages spoken" },
-  ],
   about: {
     eyebrow: "Why Roots and Roof",
     heading: "A guide who has walked the path you're on",
