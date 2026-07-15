@@ -1,0 +1,15 @@
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="1000" fill="#1a4a2e"/>
+  <g transform="translate(500,500)">
+    <circle cx="0" cy="0" r="330" fill="none" stroke="#c9a84c" stroke-width="4"/>
+    <circle cx="0" cy="0" r="290" fill="none" stroke="#c9a84c" stroke-width="3"/>
+    <path d="M -160 -60 L 0 -195 L 160 -60" fill="none" stroke="#c9a84c" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="0" y="55" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="185" fill="#f5f0e8" letter-spacing="6">R&amp;R</text>
+    <path d="M 0 65 L 0 145
+             M 0 105 L -85 195
+             M 0 105 L 85 195
+             M -85 195 L -140 260
+             M 85 195 L 140 260"
+          fill="none" stroke="#c9a84c" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

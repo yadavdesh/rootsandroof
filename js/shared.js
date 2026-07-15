@@ -19,7 +19,18 @@ function headerTemplate(basePath, isHomePage) {
     <header class="navbar${isHomePage ? "" : " solid"}" id="navbar">
       <div class="container">
         <a class="brand-mark" href="${basePath}index.html" aria-label="Roots and Roof home">
-          <svg width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 26 V38 M32 30 C26 34 22 34 17 40 M32 33 C38 37 42 37 47 43 M32 36 C28 41 25 44 20 50 M32 36 C36 41 39 44 44 50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+          <svg width="52" height="52" viewBox="98 98 464 464" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="330" cy="330" r="218" fill="none" stroke="#c9a84c" stroke-width="2.6"/>
+            <circle cx="330" cy="330" r="191" fill="none" stroke="#c9a84c" stroke-width="2"/>
+            <path d="M 224 258 L 330 165 L 436 258" fill="none" stroke="#c9a84c" stroke-width="7.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="330" y="367" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="122" fill="#f5f0e8" letter-spacing="4">R&amp;R</text>
+            <path d="M 330 375 L 330 428
+                     M 330 401 L 274 466
+                     M 330 401 L 386 466
+                     M 274 466 L 236 511
+                     M 386 466 L 424 511"
+                  fill="none" stroke="#c9a84c" stroke-width="4.6" stroke-linecap="round"/>
+          </svg>
           <span id="brand-name">Roots and Roof</span>
         </a>
         <nav class="nav-links" id="nav-links"></nav>
@@ -37,7 +48,18 @@ function footerTemplate(basePath, isHomePage) {
       <div class="container">
         <div class="footer-row footer-row-links">
           <div class="brand-mark">
-            <svg width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M32 6 L54 24 M32 6 L10 24 M14 24 H50" stroke="#b8963f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="42" height="42" viewBox="98 98 464 464" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="330" cy="330" r="218" fill="none" stroke="#c9a84c" stroke-width="2.6"/>
+              <circle cx="330" cy="330" r="191" fill="none" stroke="#c9a84c" stroke-width="2"/>
+              <path d="M 224 258 L 330 165 L 436 258" fill="none" stroke="#c9a84c" stroke-width="7.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="330" y="367" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="122" fill="#f5f0e8" letter-spacing="4">R&amp;R</text>
+              <path d="M 330 375 L 330 428
+                       M 330 401 L 274 466
+                       M 330 401 L 386 466
+                       M 274 466 L 236 511
+                       M 386 466 L 424 511"
+                    fill="none" stroke="#c9a84c" stroke-width="4.6" stroke-linecap="round"/>
+            </svg>
             <span id="footer-brand-name">Roots and Roof</span>
           </div>
           <div class="footer-links" id="footer-links"></div>
