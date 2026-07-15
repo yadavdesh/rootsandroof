@@ -6,14 +6,24 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rootsandroof.de/blog.html</loc>
+    <loc>https://rootsandroof.de/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rootsandroof.de/news.html</loc>
+    <loc>https://rootsandroof.de/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rootsandroof.de/impressum</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://rootsandroof.de/datenschutz</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://rootsandroof.de/blog/berlin-prices-moving-again.html</loc>

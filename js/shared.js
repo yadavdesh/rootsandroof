@@ -11,7 +11,7 @@
    both on load. That guarantees every page is byte-identical instead of
    relying on copy-pasted markup staying in sync across files by hand.
 
-   basePath: "" for pages at the site root (index.html, blog.html, etc.),
+   basePath: "" for pages at the site root (index.html, etc.),
    "../" for pages nested one folder deep (blog/some-post.html).
    ========================================================== */
 function headerTemplate(basePath, isHomePage) {
@@ -72,6 +72,8 @@ function footerTemplate(basePath, isHomePage) {
           <p class="footer-note" id="footer-note"></p>
           <div class="footer-meta">
             <p id="footer-copyright"></p>
+            <a href="${basePath}impressum.html">Impressum</a>
+            <a href="${basePath}datenschutz.html">Datenschutz</a>
             <a href="${basePath}admin.html">Admin</a>
           </div>
         </div>
@@ -230,7 +232,7 @@ function wireNavCommon() {
   });
 }
 
-/* If the page loads with a #hash (e.g. arriving from blog.html -> index.html#contact),
+/* If the page loads with a #hash (e.g. arriving from /blog -> index.html#contact),
    smooth-scroll to it instead of the browser's instant jump. */
 function wireHashArrival() {
   if (!window.location.hash) return;

@@ -1,0 +1,14 @@
+# Consolidate SEO signal onto clean URLs: any old/linked .html version
+# permanently redirects to the clean path (force, since the .html file
+# still physically exists and would otherwise be served directly).
+/blog.html        /blog        301!
+/news.html        /news        301!
+/impressum.html    /impressum   301!
+/datenschutz.html  /datenschutz 301!
+
+# Serve the actual files at the clean URLs without changing the address
+# bar (200 = rewrite, not redirect).
+/blog         /blog.html        200
+/news         /news.html        200
+/impressum    /impressum.html   200
+/datenschutz  /datenschutz.html 200
