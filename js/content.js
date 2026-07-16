@@ -15,10 +15,10 @@ const DEFAULT_CONTENT = {
   },
   nav: ["About", "Services", "Process", "Stories", "FAQ", "Contact"],
   hero: {
-    eyebrow: "English-Speaking Berlin Buyer Agent & Property Finder",
-    headline: "Finding Home in Berlin — Your Trusted Berlin Property Advisor",
+    eyebrow: "Independent Purchase Advisor for International Buyers",
+    headline: "Finding Home in Berlin — Your Independent Purchase Advisor",
     subheadline:
-      "Roots and Roof is a boutique Berlin property advisory helping international and expat buyers purchase apartments in Germany with confidence — from first search to keys in hand.",
+      "Roots and Roof is an independent purchase advisory helping international buyers evaluate and buy apartments and houses in Berlin with confidence — from first search to keys in hand.",
     ctaPrimary: "Book a Consultation",
     ctaSecondary: "See How It Works",
     backgroundImage:
@@ -39,6 +39,7 @@ const DEFAULT_CONTENT = {
       "Fluent guidance in English, Hindi, German and Russian",
       "Direct network of notaries, banks and surveyors",
       "End-to-end support, from search to keys in hand",
+      "Registered Berlin business — independent advisor, never paid on commission",
     ],
   },
   services: [
@@ -66,6 +67,7 @@ const DEFAULT_CONTENT = {
     { q: "Can non-residents buy property in Germany?", a: "Yes. Germany places no restrictions on foreign or non-resident buyers, including NRIs and Indian citizens. Residency is not required to purchase property here." },
     { q: "Do I need to be in Berlin in person to buy?", a: "Not necessarily. Viewings can often be done virtually, and the notary appointment can be handled via power of attorney in many cases. We'll advise what's realistic for your situation." },
     { q: "What additional costs should I budget for?", a: "Beyond the purchase price, expect notary and registration fees, real estate transfer tax, and possibly agent commission — typically 8-12% combined. We walk through exact figures on your discovery call." },
+    { q: "How does Roots and Roof charge for its services?", a: "Roots and Roof works on a flat advisory fee basis, agreed upfront before any work begins — never a commission on the property price, so our advice is never influenced by which property you choose or its sale price. Exact fee ranges are shared during your discovery call, based on the scope of support you need." },
     { q: "Can I get financing as a foreign buyer?", a: "Yes, though terms vary by bank and residency status. We work with lenders experienced in financing international and expat buyers and help you understand what to expect." },
     { q: "Do you help with rental management after purchase?", a: "Yes — many of our clients buy as investors based abroad. We offer ongoing coordination for tenants, maintenance and annual reporting." },
   ],

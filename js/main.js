@@ -8,7 +8,7 @@ let SITE_CONTENT = null;
 document.addEventListener("DOMContentLoaded", () => {
   SITE_CONTENT = loadContent();
   initSharedChrome(SITE_CONTENT, true);
-  document.title = `Berlin Property Advisor & Buyer Agent | ${SITE_CONTENT.brand.name}`;
+  document.title = `Berlin Property Purchase Advisor | ${SITE_CONTENT.brand.name}`;
   render(SITE_CONTENT);
   wireReveal();
   wireFAQ();
