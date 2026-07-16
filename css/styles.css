@@ -2,6 +2,33 @@
    Roots and Roof — Stylesheet
    ========================================================== */
 
+/* Self-hosted fonts (previously loaded from Google's CDN, which sends
+   visitor IP addresses to Google before consent — moved local to avoid
+   that transfer entirely). Paths below resolve relative to this CSS
+   file's own location (css/styles.css), so they work correctly from
+   every page regardless of that page's own directory depth. */
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-Italic-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Navy & champagne-gold — a professional real-estate-advisory palette:
      trustworthy, upscale, and neutral enough to sit well behind a headshot,
