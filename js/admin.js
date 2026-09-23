@@ -2,7 +2,7 @@
    Roots and Roof — Admin dashboard behaviour
    ========================================================== */
 
-const TABS = ["Header & Footer", "Hero", "About", "Services", "Process", "Stories", "FAQ", "Contact", "Social", "News", "Blog"];
+const TABS = ["Header & Footer", "Hero", "About", "Services", "Process", "FAQ", "Contact", "Social", "News", "Blog"];
 let draft = null;
 let currentTab = "Header & Footer";
 
@@ -248,7 +248,6 @@ function renderTab(tab) {
   else if (tab === "About") panel.innerHTML = renderAboutTab();
   else if (tab === "Services") panel.innerHTML = renderArrayTab("services", renderServiceCard, "Service");
   else if (tab === "Process") panel.innerHTML = renderArrayTab("process", renderProcessCard, "Step");
-  else if (tab === "Stories") panel.innerHTML = renderArrayTab("testimonials", renderTestimonialCard, "Testimonial");
   else if (tab === "FAQ") panel.innerHTML = renderArrayTab("faq", renderFaqCard, "Question");
   else if (tab === "Contact") panel.innerHTML = renderContactTab();
   else if (tab === "Social") panel.innerHTML = note("Instagram appears as an icon in the top-right of the navigation bar on every page, instead of in the Contact section, so it stays visible without competing with the WhatsApp button. All other platforms here show in the Contact section and footer as usual.") + renderArrayTab("socialLinks", renderSocialCard, "Social Link");
@@ -318,7 +317,7 @@ function renderServiceCard(s, i) {
     <div class="admin-card" data-card="services-${i}">
       <button class="admin-remove-btn" data-remove="services:${i}">${trashSvg()}</button>
       <p class="admin-card-title">Service ${i + 1}</p>
-      ${field("Icon (Home, Search, FileText, Landmark, Users, TrendingUp, ShieldCheck)", s.icon, `services.${i}.icon`)}
+      ${field("Icon (Home, Search, FileText, Landmark, Users, TrendingUp, ShieldCheck, Key)", s.icon, `services.${i}.icon`)}
       ${field("Title", s.title, `services.${i}.title`)}
       ${field("Description", s.description, `services.${i}.description`, true)}
     </div>`;
@@ -331,18 +330,6 @@ function renderProcessCard(p, i) {
       <p class="admin-card-title">Step ${i + 1}</p>
       ${field("Title", p.title, `process.${i}.title`)}
       ${field("Description", p.description, `process.${i}.description`, true)}
-    </div>`;
-}
-
-function renderTestimonialCard(t, i) {
-  return `
-    <div class="admin-card" data-card="testimonials-${i}">
-      <button class="admin-remove-btn" data-remove="testimonials:${i}">${trashSvg()}</button>
-      <p class="admin-card-title">Testimonial ${i + 1}</p>
-      ${field("Client Name", t.name, `testimonials.${i}.name`)}
-      ${field("Location / Role", t.location, `testimonials.${i}.location`)}
-      ${field("Quote", t.quote, `testimonials.${i}.quote`, true)}
-      ${field("Rating (1-5)", t.rating, `testimonials.${i}.rating`)}
     </div>`;
 }
 
@@ -466,7 +453,6 @@ function wireArrayButtons() {
   const addMap = {
     services: { icon: "Home", title: "New Service", description: "Describe this service." },
     process: { title: "New Step", description: "Describe this step." },
-    testimonials: { name: "New Client", location: "Location", quote: "Their experience...", rating: 5 },
     faq: { q: "New question?", a: "Answer goes here." },
     socialLinks: { platform: "Instagram", url: "" },
     news: { title: "New headline", source: "Source name", sourceUrl: "https://", date: new Date().toISOString().slice(0, 10), summary: "Summary of the news item." },
